@@ -15,7 +15,12 @@ project "GLFW"
 		"src/input.c",
 		"src/monitor.c",
 		"src/vulkan.c",
-		"src/window.c"
+		"src/window.c",
+		"src/null_init.c",
+		"src/null_monitor.c",
+		"src/null_window.c",
+		"src/null_joystick.c",
+		"src/internal.h"
 	}
     
 	filter "system:linux"
@@ -35,12 +40,14 @@ project "GLFW"
 			"src/glx_context.c",
 			"src/egl_context.c",
 			"src/osmesa_context.c",
-			"src/linux_joystick.c"
+			"src/linux_joystick.c",
+			"src/platform.c"
 		}
 
 		defines
 		{
-			"_GLFW_X11"
+			"_GLFW_X11",
+			"_GLFW_USE_CONFIG_H"
 		}
 
 	filter "system:windows"
@@ -55,15 +62,18 @@ project "GLFW"
 			"src/win32_time.c",
 			"src/win32_thread.c",
 			"src/win32_window.c",
+			"src/win32_module.c",
 			"src/wgl_context.c",
 			"src/egl_context.c",
-			"src/osmesa_context.c"
+			"src/osmesa_context.c",
+			"src/platform.c"
 		}
 
 		defines 
 		{ 
 			"_GLFW_WIN32",
-			"_CRT_SECURE_NO_WARNINGS"
+			"_CRT_SECURE_NO_WARNINGS",
+			"_GLFW_USE_CONFIG_H"
 		}
 
 	filter "configurations:Debug"
